@@ -5,20 +5,68 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/index.css"/>
+    <link rel="stylesheet" href="styles/index.css" />
     <title>Análise Financeira</title>
 </head>
+<h1>Calculadora financeira</h1>
 
-<h1>Welcome to the Financial Software</h1>
-  
-  <h2>Choose an Option:</h2>
-  <ul>
-    <li><a href="amortization-schedule.html">Amortization Schedule</a></li>
-    <li><a href="annuity-payment.html">Annuity Payment</a></li>
-    <li><a href="future-value.html">Future Value</a></li>
-  </ul>
-  
-</body>
+<section class="interest-container">
+    <h2>Calcular juros compostos</h2>
+    <div class="input-group">
+        <label for="principal" class="input-label">Valor inicial:</label>
+        <input type="number" id="principal" class="input-field" placeholder="Valor inicial">
+    </div>
+    <div class="input-group">
+        <label for="interestRate" class="input-label">Taxa de juros (%):</label>
+        <input type="number" id="interestRate" class="input-field" placeholder="Juros">
+        <select id="interestFrequency" class="input-field">
+            <option value="monthly">Mensal</option>
+            <option value="annually">Anual</option>
+        </select>
+    </div>
+    <div class="input-group">
+        <label for="periods" class="input-label">Período:</label>
+        <input type="number" id="periods" class="input-field" placeholder="Número de meses">
+        <select id="period-type" class="input-field">
+            <option value="meses">Meses</option>
+            <option value="anos">Anos</option>
+        </select>
+    </div>
+    <button class="btn" id="calculate-compound-interest-btn">Calcular</button>
+    <div class="results">
+        <p>Resultado:</p>
+        <strong class="interest-result"></strong>
+    </div>
+</section>
+<section class="annuity-container">
+    <h2>Calcular pagamento de anuidade</h2>
+    <div class="input-group">
+        <label for="annuityPrincipal" class="input-label">Valor principal:</label>
+        <input type="number" id="annuityPrincipal" class="input-field" placeholder="Valor principal">
+    </div>
+    <div class="input-group">
+        <label for="annuityInterestRate" class="input-label">Taxa de juros (%):</label>
+        <input type="number" id="annuityInterestRate" class="input-field" placeholder="Juros">
+        <select id="annuityInterestFrequency" class="input-field">
+            <option value="monthly">Mensal</option>
+            <option value="annually">Anual</option>
+        </select>
+    </div>
+    <div class="input-group">
+        <label for="annuityPeriods" class="input-label">Período:</label>
+        <input type="number" id="annuityPeriods" class="input-field" placeholder="Número de meses">
+        <select id="annuityPeriodType" class="input-field">
+            <option value="meses">Meses</option>
+            <option value="anos">Anos</option>
+        </select>
+    </div>
+    <button class="btn" id="calculate-annuity-payment-btn">Calcular</button>
+    <div class="results">
+        <p>Resultado:</p>
+        <strong class="annuity-result"></strong>
+    </div>
+</section>
+
 <script type="module" src="./index.js"></script>
 
 </html>

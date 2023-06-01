@@ -4,24 +4,47 @@ Implement formulas such as compound interest, annuities, or amortization schedul
 The program can calculate future values, present values, or periodic payments based on user inputs.
 This can be useful for individuals or businesses making investment decisions.
 */
-import { calculateFutureValue, calculateAnnuityPayment, calculateAmortizationSchedule } from "./utils.js";
+import { compoundInterest, annuityPayment, amortizationSchedule } from "./utils.js";
 
-var principal = 1000; // Principal amount, initial value of the investment
-var interestRate = 5; // Interest rate (5%)
-var periods = 120; // Number of compounding periods (months)
+const calculateCompoundInterestBtn = document.getElementById("calculate-compound-interest-btn");
+const calculateAnnuityPaymentBtn = document.getElementById("calculate-annuity-payment-btn");
 
-var futureValue = calculateFutureValue(principal, interestRate, periods);
-var annuityPayment = calculateAnnuityPayment(principal, interestRate, periods);
+function calculateCompoundInterest() {
+  // Retrieve input values
+  let principal = parseFloat(document.getElementById("principal").value);
+  let interestRate = parseFloat(document.getElementById("interestRate").value);
+  let interestFrequency = document.getElementById("interestFrequency").value;
+  let periods = parseFloat(document.getElementById("periods").value);
+  let periodType = document.getElementById("period-type").value;
 
-var amortizationSchedule = calculateAmortizationSchedule(
-  principal,
-  interestRate,
-  periods
-);
+  // Call calculateCompoundInterest function
+  let compoundInterestResult = compoundInterest(principal, interestRate, periods, interestFrequency, periodType);
 
-var principalData = amortizationSchedule.map((entry) => entry.principalPayment);
-var interestData = amortizationSchedule.map((entry) => entry.interestPayment);
-var periodsData = amortizationSchedule.map((entry) => entry.period);
+  // Update result element
+  let resultElement = document.querySelector(".interest-result");
+  resultElement.textContent = `Após ${periods} ${periodType}, o montante será de R$ ${compoundInterestResult}. Seu lucro será de R$ ${(compoundInterestResult - principal).toFixed(2)}`;
+}
+
+function calculateAnnuityPayment() {
+  // Retrieve input values
+  let annuityPrincipal = parseFloat(document.getElementById("annuityPrincipal").value);
+  let annuityInterestRate = parseFloat(document.getElementById("annuityInterestRate").value);
+  let annuityInterestFrequency = document.getElementById("annuityInterestFrequency").value;
+  let annuityPeriods = parseFloat(document.getElementById("annuityPeriods").value);
+  let annuityPeriodType = document.getElementById("annuityPeriodType").value;
+
+  // Call calculateAnnuityPayment function
+  let annuityPaymentResult = annuityPayment(annuityPrincipal, annuityInterestRate, annuityPeriods, annuityInterestFrequency, annuityPeriodType);
+
+  // Update result element
+  let resultElement = document.querySelector(".annuity-result");
+  resultElement.textContent = `O pagamento da anuidade será de R$ ${annuityPaymentResult} por ${annuityPeriods} ${annuityPeriodType}`;
+}
+
+calculateCompoundInterestBtn.addEventListener("click", calculateCompoundInterest);
+calculateAnnuityPaymentBtn.addEventListener("click", calculateAnnuityPayment);
+
+
 
 function renderChart(principalData, interestData, periodsData) {
   var ctx = document.getElementById("chart").getContext("2d");
@@ -70,8 +93,4 @@ function renderChart(principalData, interestData, periodsData) {
 }
 
 // Call the renderChart function
-renderChart(principalData, interestData, periodsData);
-
-console.log("Future Value:", futureValue);
-console.log("Annuity Payment:", annuityPayment);
-console.log("Amortization Schedule:", amortizationSchedule);
+//renderChart(principalData, interestData, periodsData);
