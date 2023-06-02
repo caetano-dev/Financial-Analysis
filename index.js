@@ -1,9 +1,5 @@
-/*Financial Investment Analysis:
-Develop a program that analyzes financial investments using series and sequences.
-Implement formulas such as compound interest, annuities, or amortization schedules.
-The program can calculate future values, present values, or periodic payments based on user inputs.
-This can be useful for individuals or businesses making investment decisions.
-*/
+import Chart from 'chart.js';
+
 import {
   compoundInterest,
   annuityPayment,
