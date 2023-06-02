@@ -1,4 +1,4 @@
-import Chart from 'chart.js';
+//import Chart from 'chart.js';
 
 import {
   compoundInterest,
@@ -37,7 +37,7 @@ function calculateCompoundInterest() {
   let resultElement = document.querySelector(".interest-result");
   resultElement.textContent = `Após ${periods} ${periodType}, o montante será de R$ ${compoundInterestResult}. Seu lucro será de R$ ${(
     compoundInterestResult - principal
-  ).toFixed(2)}`;
+  ).toFixed(2)}.`;
 }
 
 function calculateAnnuityPayment() {
@@ -92,6 +92,13 @@ function calculateAmortizationSchedule() {
   var interestData = schedule.map((entry) => entry.interestPaid);
   var periodsData = schedule.map((entry) => entry.period);
   var remainingData = schedule.map((entry) => entry.remainingBalance);
+    // Scroll the page to the bottom after a delay of 0.5 seconds
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+      });
+    }, 500);
 
   renderChart(principalData, interestData, periodsData, remainingData);
 }
