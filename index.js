@@ -57,11 +57,12 @@ function calculateAmortizationSchedule(){
   var principalData = schedule.map(
     (entry) => entry.principalPayment
   );
-  var interestData = schedule.map((entry) => entry.interestPayment);
+  var interestData = schedule.map((entry) => entry.interestPaid);
   var periodsData = schedule.map((entry) => entry.period);
+  var remainingData = schedule.map((entry) => entry.remainingBalance);
 
 
-  renderChart(principalData, interestData, periodsData)
+  renderChart(principalData, interestData, periodsData, remainingData)
 }
 
 calculateCompoundInterestBtn.addEventListener("click", calculateCompoundInterest);
@@ -69,7 +70,7 @@ calculateAnnuityPaymentBtn.addEventListener("click", calculateAnnuityPayment);
 calculateAmortizationScheduleBtn.addEventListener("click", calculateAmortizationSchedule);
 
 
-function renderChart(principalData, interestData, periodsData) {
+function renderChart(principalData, interestData, periodsData, remainingData) {
   var ctx = document.getElementById("chart").getContext("2d");
 
   new Chart(ctx, {
@@ -78,19 +79,26 @@ function renderChart(principalData, interestData, periodsData) {
       labels: periodsData,
       datasets: [
         {
-          label: "Principal Payment",
+          label: "Pagamento Principal",
           data: principalData,
           backgroundColor: "rgba(54, 162, 235, 0.5)",
           borderColor: "rgba(54, 162, 235, 1)",
           borderWidth: 1,
         },
         {
-          label: "Interest Payment",
+          label: "Pagamento de Juros",
           data: interestData,
           backgroundColor: "rgba(255, 99, 132, 0.5)",
           borderColor: "rgba(255, 99, 132, 1)",
           borderWidth: 1,
         },
+        {
+          label: "Saldo Restante",
+          data: remainingData,
+          backgroundColor: "rgba(0, 204, 0, 0.5)",
+          borderColor: "rgba(0, 204, 0, 1)",
+          borderWidth: 1,
+      },
       ],
     },
     options: {
@@ -100,14 +108,14 @@ function renderChart(principalData, interestData, periodsData) {
           display: true,
           title: {
             display: true,
-            text: "Period",
+            text: "Meses",
           },
         },
         y: {
           display: true,
           title: {
             display: true,
-            text: "Payment Amount",
+            text: "Valores pagos",
           },
         },
       },
