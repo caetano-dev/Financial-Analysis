@@ -55,45 +55,32 @@ export function amortizationSchedule(principal, interestRate, numYears) {
   const schedule = [];
   const monthlyInterestRate = interestRate / 12 / 100;
   const numPayments = numYears * 12;
-  const monthlyPayment = principal * (monthlyInterestRate / (1 - Math.pow(1 + monthlyInterestRate, -numPayments)));
+  const monthlyPayment =
+    principal *
+    (monthlyInterestRate /
+      (1 - Math.pow(1 + monthlyInterestRate, -numPayments)));
 
   let remainingBalance = principal;
   let principalPayment = 0;
-  let interestPaid = 0
+  let interestPaid = 0;
 
   for (let period = 1; period <= numPayments; period++) {
     const interestPayment = remainingBalance * monthlyInterestRate;
-    const principalPaymentForRemainingBalance = monthlyPayment - interestPayment;
-
+    const principalPaymentForRemainingBalance =
+      monthlyPayment - interestPayment;
 
     principalPayment += principalPaymentForRemainingBalance;
-    interestPaid+=interestPayment
+    interestPaid += interestPayment;
     remainingBalance -= principalPaymentForRemainingBalance;
 
-    console.log(monthlyInterestRate * remainingBalance)
+    console.log(monthlyInterestRate * remainingBalance);
     schedule.push({
       period: period,
       remainingBalance: parseFloat(remainingBalance.toFixed(2)),
       interestPaid: parseFloat(interestPaid.toFixed(2)),
-      principalPayment: parseFloat(principalPayment.toFixed(2))
+      principalPayment: parseFloat(principalPayment.toFixed(2)),
     });
   }
 
   return schedule;
 }
-
-
-
-/*
-var principal = 200000; // for example
-var periods = 360; // 30 years
-var monthlyRate = (0.065)/12;  // 0.065= APR of 6.5% as decimal
-var monthyPayment = (monthlyRate /(1-(Math.pow((1+monthlyRate),-(periods)))))*principal;
-
-for (var i=0; i<360; i++) {
-  var interestForMonth = balance * monthlyRate;
-  var principalForMonth = monthlyPayment - interestForMonth;
-  principal -= monthlyPayment; // probably should be -= principalForMonth see comments below
-  // output as necessary.
-}
-*/
