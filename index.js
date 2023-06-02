@@ -8,6 +8,7 @@ import { compoundInterest, annuityPayment, amortizationSchedule } from "./utils.
 
 const calculateCompoundInterestBtn = document.getElementById("calculate-compound-interest-btn");
 const calculateAnnuityPaymentBtn = document.getElementById("calculate-annuity-payment-btn");
+const calculateAmortizationScheduleBtn = document.getElementById("calculate-amortization-btn");
 
 function calculateCompoundInterest() {
   // Retrieve input values
@@ -41,9 +42,31 @@ function calculateAnnuityPayment() {
   resultElement.textContent = `O pagamento da anuidade será de R$ ${annuityPaymentResult} por ${annuityPeriods} ${annuityPeriodType}`;
 }
 
+function calculateAmortizationSchedule(){
+  // Retrieve input values
+  let amortizationPrincipal = parseFloat(document.getElementById("amortizationPrincipal").value);
+  let amortizationInterestRate = parseFloat(document.getElementById("amortizationInterestRate").value);
+  let amortizationPeriods = parseFloat(document.getElementById("amortizationPeriods").value);
+
+  // Call amortizationSchedule function
+  let schedule = amortizationSchedule(
+    amortizationPrincipal,
+    amortizationInterestRate,
+    amortizationPeriods,
+  );
+  var principalData = schedule.map(
+    (entry) => entry.principalPayment
+  );
+  var interestData = schedule.map((entry) => entry.interestPayment);
+  var periodsData = schedule.map((entry) => entry.period);
+
+
+  renderChart(principalData, interestData, periodsData)
+}
+
 calculateCompoundInterestBtn.addEventListener("click", calculateCompoundInterest);
 calculateAnnuityPaymentBtn.addEventListener("click", calculateAnnuityPayment);
-
+calculateAmortizationScheduleBtn.addEventListener("click", calculateAmortizationSchedule);
 
 
 function renderChart(principalData, interestData, periodsData) {
@@ -91,6 +114,3 @@ function renderChart(principalData, interestData, periodsData) {
     },
   });
 }
-
-// Call the renderChart function
-//renderChart(principalData, interestData, periodsData);

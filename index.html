@@ -39,7 +39,7 @@
     </div>
 </section>
 <section class="annuity-container">
-    <h2>Calcular pagamento de anuidade</h2>
+    <h2>Calcular pagamento de anuidade (terminar)</h2>
     <div class="input-group">
         <label for="annuityPrincipal" class="input-label">Valor principal:</label>
         <input type="number" id="annuityPrincipal" class="input-field" placeholder="Valor principal">
@@ -66,7 +66,27 @@
         <strong class="annuity-result"></strong>
     </div>
 </section>
+<section class="amortization-container">
+    <h2>Tabela de amortização</h2>
+    <div class="input-group">
+        <label for="amortizationPrincipal" class="input-label">Valor principal:</label>
+        <input type="number" id="amortizationPrincipal" class="input-field" placeholder="Valor principal">
+    </div>
+    <div class="input-group">
+        <label for="amortizationInterestRate" class="input-label">Taxa de juros (%):</label>
+        <input type="number" id="amortizationInterestRate" class="input-field" placeholder="Juros">
+    </div>
+    <div class="input-group">
+        <label for="amortizationPeriods" class="input-label">Período:</label>
+        <input type="number" id="amortizationPeriods" class="input-field" placeholder="Número de Anos">
+    </div>
+    <button class="btn" id="calculate-amortization-btn">Calcular</button>
+    <div class="results">
+        <canvas id="chart"></canvas>
+    </div>
+</section>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="module" src="./index.js"></script>
 
 </html>
