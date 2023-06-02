@@ -9,89 +9,111 @@
     <title>Análise Financeira</title>
 </head>
 <h1>Calculadora financeira</h1>
-
 <section class="interest-container">
     <h2>Calcular juros compostos</h2>
     <div class="input-container">
-    <div class="input-group">
+      <div class="input-group">
         <label for="principal" class="input-label">Valor inicial:</label>
         <input type="number" id="principal" class="input-field">
-    </div>
-    <div class="input-group">
+      </div>
+      <div class="input-group">
         <label for="interestRate" class="input-label">Taxa de juros (%):</label>
         <input type="number" id="interestRate" class="input-field">
         <select id="interestFrequency" class="input-field">
-            <option value="monthly">Mensal</option>
-            <option value="annually">Anual</option>
+          <option value="monthly">Mensal</option>
+          <option value="annually">Anual</option>
         </select>
-    </div>
-    <div class="input-group">
+      </div>
+      <div class="input-group">
         <label for="periods" class="input-label">Período:</label>
         <input type="number" id="periods" class="input-field">
         <select id="period-type" class="input-field">
-            <option value="meses">Meses</option>
-            <option value="anos">Anos</option>
+          <option value="meses">Meses</option>
+          <option value="anos">Anos</option>
         </select>
+      </div>
     </div>
-</div>
     <button class="btn" id="calculate-compound-interest-btn">Calcular</button>
     <div class="results">
-        <strong class="interest-result"></strong>
+      <strong class="interest-result"></strong>
     </div>
-</section>
+    <button class="btn btn-info" id="how-it-works-interest-btn">Como funciona?</button>
+    <dialog id="how-it-works-interest-dialog" class="dialog">
+      <div class="dialog-title">Como funciona?</div>
+      <div class="dialog-content">
+        <p>Text explaining how compound interest calculation works...</p>
+      </div>
+      <span class="dialog-close">Fechar</span>
+    </dialog>
+  </section>
 
-<section class="annuity-container">
+  <section class="annuity-container">
     <h2>Calcular pagamento de anuidade (terminar)</h2>
     <div class="input-container">
-    <div class="input-group">
+      <div class="input-group">
         <label for="annuityPrincipal" class="input-label">Valor principal:</label>
         <input type="number" id="annuityPrincipal" class="input-field">
-    </div>
-    <div class="input-group">
+      </div>
+      <div class="input-group">
         <label for="annuityInterestRate" class="input-label">Taxa de juros (%):</label>
         <input type="number" id="annuityInterestRate" class="input-field">
         <select id="annuityInterestFrequency" class="input-field">
-            <option value="monthly">Mensal</option>
-            <option value="annually">Anual</option>
+          <option value="monthly">Mensal</option>
+          <option value="annually">Anual</option>
         </select>
-    </div>
-    <div class="input-group">
+      </div>
+      <div class="input-group">
         <label for="annuityPeriods" class="input-label">Período:</label>
         <input type="number" id="annuityPeriods" class="input-field">
         <select id="annuityPeriodType" class="input-field">
-            <option value="meses">Meses</option>
-            <option value="anos">Anos</option>
+          <option value="meses">Meses</option>
+          <option value="anos">Anos</option>
         </select>
-    </div>
+      </div>
     </div>
     <button class="btn" id="calculate-annuity-payment-btn">Calcular</button>
     <div class="results">
-        <strong class="annuity-result"></strong>
+      <strong class="annuity-result"></strong>
     </div>
-</section>
+    <button class="btn btn-info" id="how-it-works-annuity-btn">Como funciona?</button>
+    <dialog id="how-it-works-annuity-dialog" class="dialog">
+      <div class="dialog-title">Como funciona?</div>
+      <div class="dialog-content">
+        <p>Text explaining how annuity payment calculation works...</p>
+      </div>
+      <span class="dialog-close">Fechar</span>
+    </dialog>
+  </section>
 
-<section class="amortization-container">
+  <section class="amortization-container">
     <h2>Tabela de amortização</h2>
     <div class="input-container">
-    <div class="input-group">
+      <div class="input-group">
         <label for="amortizationPrincipal" class="input-label">Valor principal:</label>
         <input type="number" id="amortizationPrincipal" class="input-field">
-    </div>
-    <div class="input-group">
+      </div>
+      <div class="input-group">
         <label for="amortizationInterestRate" class="input-label">Taxa de juros (%):</label>
         <input type="number" id="amortizationInterestRate" class="input-field">
-    </div>
-    <div class="input-group">
+      </div>
+      <div class="input-group">
         <label for="amortizationPeriods" class="input-label">Anos:</label>
         <input type="number" id="amortizationPeriods" class="input-field">
-    </div>
+      </div>
     </div>
     <button class="btn" id="calculate-amortization-btn">Calcular</button>
     <div class="results">
-        <canvas id="chart"></canvas>
+      <canvas id="chart"></canvas>
     </div>
-</section>
-
+    <button class="btn btn-info" id="how-it-works-amortization-btn">Como funciona?</button>
+    <dialog id="how-it-works-amortization-dialog" class="dialog">
+      <div class="dialog-title">Como funciona?</div>
+      <div class="dialog-content">
+        <p id="how-it-works-amortization-paragraph"></p>
+      </div>
+      <span class="dialog-close">Fechar</span>
+    </dialog>
+  </section>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="module" src="./index.js"></script>
 

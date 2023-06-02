@@ -58,6 +58,58 @@ h2 {
   background-color: #0056b3;
 }
 
+/* Dialog Container */
+.dialog-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Dialog Styles */
+.dialog {
+  max-width: 400px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Dialog Title */
+.dialog-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Dialog Content */
+.dialog-content {
+  margin-bottom: 20px;
+}
+
+/* Dialog Close Button */
+.dialog-close {
+  display: block;
+  margin-left: auto;
+  color: #999;
+  cursor: pointer;
+}
+
+/* Dialog Close Button Hover */
+.dialog-close:hover {
+  color: #333;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .results {
   margin-top: 2em;
   padding: 2em;

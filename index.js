@@ -3,7 +3,7 @@
 import {
   compoundInterest,
   annuityPayment,
-  amortizationSchedule,
+  amortizationSchedule, amortizationScheduleExplaination
 } from "./utils.js";
 
 const calculateCompoundInterestBtn = document.getElementById(
@@ -92,13 +92,13 @@ function calculateAmortizationSchedule() {
   var interestData = schedule.map((entry) => entry.interestPaid);
   var periodsData = schedule.map((entry) => entry.period);
   var remainingData = schedule.map((entry) => entry.remainingBalance);
-    // Scroll the page to the bottom after a delay of 0.5 seconds
-    setTimeout(() => {
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: "smooth"
-      });
-    }, 500);
+  // Scroll the page to the bottom after a delay of 0.5 seconds
+  setTimeout(() => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth",
+    });
+  }, 500);
 
   renderChart(principalData, interestData, periodsData, remainingData);
 }
@@ -165,3 +165,56 @@ function renderChart(principalData, interestData, periodsData, remainingData) {
     },
   });
 }
+
+// Open and close the "Como funciona?" dialogs
+const interestDialog = document.getElementById("how-it-works-interest-dialog");
+const annuityDialog = document.getElementById("how-it-works-annuity-dialog");
+const amortizationDialog = document.getElementById(
+  "how-it-works-amortization-dialog"
+);
+
+const amortizationParagraph = document.getElementById("how-it-works-amortization-paragraph");
+amortizationParagraph.innerText = amortizationScheduleExplaination;
+
+const interestBtn = document.getElementById("how-it-works-interest-btn");
+const annuityBtn = document.getElementById("how-it-works-annuity-btn");
+const amortizationBtn = document.getElementById(
+  "how-it-works-amortization-btn"
+);
+
+interestBtn.addEventListener("click", () => interestDialog.showModal());
+annuityBtn.addEventListener("click", () => annuityDialog.showModal());
+amortizationBtn.addEventListener("click", () => amortizationDialog.showModal());
+
+interestDialog.addEventListener("close", () =>
+  interestDialog.querySelector("form").reset()
+);
+annuityDialog.addEventListener("close", () =>
+  annuityDialog.querySelector("form").reset()
+);
+amortizationDialog.addEventListener("close", () =>
+  amortizationDialog.querySelector("form").reset()
+);
+
+const dialogButtons = document.querySelectorAll('.btn-info');
+const closeButtons = document.querySelectorAll('.dialog-close');
+const overlay = document.createElement('div');
+overlay.className = 'overlay';
+
+dialogButtons.forEach(button => {
+  const dialogId = button.getAttribute('id').replace('how-it-works-', '');
+  const dialog = document.getElementById(dialogId);
+
+  button.addEventListener('click', () => {
+    document.body.appendChild(overlay);
+    dialog.showModal();
+  });
+});
+
+closeButtons.forEach(button => {
+  const dialog = button.parentElement;
+  button.addEventListener('click', () => {
+    dialog.close();
+    document.body.removeChild(overlay);
+  });
+});
