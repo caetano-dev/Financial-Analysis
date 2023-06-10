@@ -48,27 +48,19 @@
   </section>
 
   <section class="annuity-container">
-    <h2>Calcular pagamento de anuidade (terminar)</h2>
+    <h2>Calcular valor presente da anuidade</h2>
     <div class="input-container">
       <div class="input-group">
-        <label for="annuityPrincipal" class="input-label">Valor principal:</label>
+        <label for="annuityPrincipal" class="input-label">Valor inicial:</label>
         <input type="number" id="annuityPrincipal" class="input-field">
       </div>
       <div class="input-group">
         <label for="annuityInterestRate" class="input-label">Taxa de juros (%):</label>
         <input type="number" id="annuityInterestRate" class="input-field">
-        <select id="annuityInterestFrequency" class="input-field">
-          <option value="monthly">Mensal</option>
-          <option value="annually">Anual</option>
-        </select>
       </div>
       <div class="input-group">
-        <label for="annuityPeriods" class="input-label">Período:</label>
+        <label for="annuityPeriods" class="input-label">Quantidade de anos:</label>
         <input type="number" id="annuityPeriods" class="input-field">
-        <select id="annuityPeriodType" class="input-field">
-          <option value="meses">Meses</option>
-          <option value="anos">Anos</option>
-        </select>
       </div>
     </div>
     <button class="btn" id="calculate-annuity-payment-btn">Calcular</button>

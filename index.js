@@ -48,26 +48,20 @@ function calculateAnnuityPayment() {
   let annuityInterestRate = parseFloat(
     document.getElementById("annuityInterestRate").value
   );
-  let annuityInterestFrequency = document.getElementById(
-    "annuityInterestFrequency"
-  ).value;
   let annuityPeriods = parseFloat(
     document.getElementById("annuityPeriods").value
   );
-  let annuityPeriodType = document.getElementById("annuityPeriodType").value;
 
   // Call calculateAnnuityPayment function
   let annuityPaymentResult = annuityPayment(
     annuityPrincipal,
     annuityInterestRate,
     annuityPeriods,
-    annuityInterestFrequency,
-    annuityPeriodType
   );
 
   // Update result element
   let resultElement = document.querySelector(".annuity-result");
-  resultElement.textContent = `O pagamento da anuidade será de R$ ${annuityPaymentResult} por ${annuityPeriods} ${annuityPeriodType}`;
+  resultElement.textContent = `O pagamento da anuidade será de R$ ${annuityPaymentResult} por ${annuityPeriods} anos`;
 }
 
 function calculateAmortizationSchedule() {

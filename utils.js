@@ -28,28 +28,16 @@ export function annuityPayment(
   principal,
   interestRate,
   periods,
-  interestFrequency,
-  periodType
 ) {
-  // what does this even mean?
-  let annuityPayment = 0;
-  let interestFrequencyFactor = interestFrequency === "monthly" ? 12 : 1;
-  let periodsInMonths = periodType === "months" ? periods : periods * 12;
-  let term = Math.pow(
-    1 + interestRate / (interestFrequencyFactor * 100),
-    periodsInMonths
-  );
-
-  for (let i = 1; i <= periodsInMonths; i++) {
-    annuityPayment +=
-      principal *
-      (interestRate / (interestFrequencyFactor * 100)) *
-      Math.pow(term, -i);
+    // Convert interest rate from percentage to decimal
+    interestRate = interestRate / 100;
+  
+    // Calculate the present value of the annuity
+    const presentValue =
+      principal * ((1 - Math.pow(1 + interestRate, -periods)) / interestRate);
+  
+    return presentValue.toFixed(2);
   }
-
-  annuityPayment /= 1 - 1 / term;
-  return annuityPayment.toFixed(2);
-}
 
 export function amortizationSchedule(principal, interestRate, numYears) {
   const schedule = [];
@@ -115,30 +103,32 @@ Portanto, após 3 anos, o montante total acumulado será de aproximadamente R$ 5
 
 Essa fórmula demonstra como os juros compostos podem aumentar significativamente o valor total ao longo do tempo, uma vez que os ganhos são reinvestidos e também geram seus próprios ganhos.`
 
-export const annuityExplaination = `O pagamento de anuidade é um tipo de transação financeira em que um valor fixo é pago regularmente, geralmente uma vez por ano, em troca de benefícios ou serviços específicos. É comumente usado em diferentes contextos, como em associações, seguros, planos de saúde, cartões de crédito e empréstimos.
+export const annuityExplaination = `O valor presente de uma anuidade é um conceito financeiro usado para determinar o valor atual de uma série de pagamentos futuros que ocorrerão em intervalos regulares, como uma anuidade. É a quantia que seria necessária hoje para igualar o valor dos pagamentos futuros, levando em consideração o tempo e a taxa de juros aplicada.
 
-Quando se trata de empréstimos ou financiamentos, a anuidade refere-se a pagamentos regulares feitos pelo mutuário para liquidar uma dívida ao longo de um período de tempo específico. Esses pagamentos geralmente são compostos por uma parte do capital (valor principal) e uma parte dos juros. O valor da anuidade é calculado usando fórmulas específicas, como a fórmula da anuidade constante.
+A fórmula básica para calcular o valor presente de uma anuidade é a seguinte:
 
-A fórmula da anuidade constante é:
-
-PMT = (PV * r) / (1 - (1 + r)^(-n))
+VP = P * [(1 - (1 + r)^(-n)) / r]
 
 Onde:
-- PMT é o valor da anuidade (pagamento periódico);
-- PV é o valor presente ou principal da dívida;
-- r é a taxa de juros periódica;
-- n é o número de períodos de pagamento.
+VP = Valor presente da anuidade
+P = Pagamento periódico (valor do pagamento a ser feito em cada período)
+r = Taxa de juros por período
+n = Número total de períodos
 
-Essa fórmula permite calcular o valor da anuidade constante necessária para pagar um empréstimo em um determinado número de períodos, considerando uma taxa de juros fixa.
+A fórmula leva em conta o fato de que o dinheiro tem valor no tempo, ou seja, um valor futuro não é igual a um valor presente. O denominador da fórmula, [(1 - (1 + r)^(-n)) / r], é chamado de fator de desconto e é usado para trazer os pagamentos futuros para o valor presente.
 
-Por exemplo, suponha que você pegue um empréstimo de R$ 50.000,00 a uma taxa de juros anual de 8% para ser pago em 5 anos (60 meses). Usando a fórmula da anuidade constante, temos:
+Vamos dar um exemplo para ilustrar o cálculo do valor presente de uma anuidade. Suponha que você tenha uma anuidade que pagará R$ 1.000 por ano durante 5 anos, com uma taxa de juros de 8% ao ano. Usando a fórmula acima, podemos calcular o valor presente:
 
-PMT = (50000 * 0,08) / (1 - (1 + 0,08)^(-60))
-PMT ≈ 1.038,79
+VP = 1000 * [(1 - (1 + 0.08)^(-5)) / 0.08]
+VP = 1000 * [(1 - (1.08)^(-5)) / 0.08]
+VP = 1000 * [(1 - 0.68058) / 0.08]
+VP = 1000 * [0.31942 / 0.08]
+VP = 1000 * 3.99271
+VP = 3992.71
 
-Portanto, você precisaria fazer pagamentos mensais de aproximadamente R$ 1.038,79 para liquidar o empréstimo em 5 anos.
+Portanto, o valor presente dessa anuidade, considerando os pagamentos de R$ 1.000 por ano durante 5 anos com uma taxa de juros de 8%, é de R$ 3.992,75.
 
-É importante notar que existem diferentes variações e métodos de cálculo de anuidades, como anuidades antecipadas (quando o pagamento é feito no início do período) e anuidades postecipadas (quando o pagamento é feito no final do período). Além disso, a fórmula apresentada é apenas uma das maneiras de calcular uma anuidade constante e pode variar dependendo do contexto específico e das regras aplicáveis.`
+Essa é uma forma de avaliar o valor atual de uma série de pagamentos futuros, permitindo que você compare diferentes opções de investimento, empréstimos ou outros tipos de fluxos de caixa ao longo do tempo.`
 
 export const amortizationScheduleExplaination = `Uma tabela de amortização é uma ferramenta utilizada para acompanhar o pagamento de um empréstimo ao longo do tempo, fornecendo informações detalhadas sobre cada pagamento periódico. Ela mostra a evolução do saldo devedor, o valor dos juros pagos e a quantia amortizada em cada período.
 
