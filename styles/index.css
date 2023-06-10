@@ -68,7 +68,7 @@ h2 {
 
 /* Dialog Styles */
 .dialog {
-  max-width: 400px;
+  max-width: 70rem;
   padding: 20px;
   background-color: #fff;
   border-radius: 5px;

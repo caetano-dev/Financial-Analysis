@@ -3,7 +3,7 @@
 import {
   compoundInterest,
   annuityPayment,
-  amortizationSchedule, amortizationScheduleExplaination
+  amortizationSchedule, amortizationScheduleExplaination, compoundInterestExplaination, annuityExplaination
 } from "./utils.js";
 
 const calculateCompoundInterestBtn = document.getElementById(
@@ -168,19 +168,22 @@ function renderChart(principalData, interestData, periodsData, remainingData) {
 
 // Open and close the "Como funciona?" dialogs
 const interestDialog = document.getElementById("how-it-works-interest-dialog");
-const annuityDialog = document.getElementById("how-it-works-annuity-dialog");
-const amortizationDialog = document.getElementById(
-  "how-it-works-amortization-dialog"
-);
+const interestParagraph = document.getElementById("how-it-works-interest-paragraph");
+interestParagraph.innerText = compoundInterestExplaination;
+const interestBtn = document.getElementById("how-it-works-interest-btn");
 
+const annuityDialog = document.getElementById("how-it-works-annuity-dialog");
+const annuityParagraph = document.getElementById("how-it-works-annuity-paragraph");
+annuityParagraph.innerText = annuityExplaination;
+const annuityBtn = document.getElementById("how-it-works-annuity-btn");
+
+const amortizationDialog = document.getElementById( "how-it-works-amortization-dialog");
 const amortizationParagraph = document.getElementById("how-it-works-amortization-paragraph");
 amortizationParagraph.innerText = amortizationScheduleExplaination;
-
-const interestBtn = document.getElementById("how-it-works-interest-btn");
-const annuityBtn = document.getElementById("how-it-works-annuity-btn");
 const amortizationBtn = document.getElementById(
   "how-it-works-amortization-btn"
 );
+
 
 interestBtn.addEventListener("click", () => interestDialog.showModal());
 annuityBtn.addEventListener("click", () => annuityDialog.showModal());
