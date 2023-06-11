@@ -29,10 +29,7 @@ export function annuityPayment(
   interestRate,
   periods,
 ) {
-    // Convert interest rate from percentage to decimal
     interestRate = interestRate / 100;
-  
-    // Calculate the present value of the annuity
     const presentValue =
       principal * ((1 - Math.pow(1 + interestRate, -periods)) / interestRate);
   
