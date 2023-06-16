@@ -1,5 +1,3 @@
-//import Chart from 'chart.js';
-
 import {
   compoundInterest,
   annuityPayment,
@@ -17,84 +15,102 @@ const calculateAmortizationScheduleBtn = document.getElementById(
 );
 
 function calculateCompoundInterest() {
-  // Retrieve input values
-  let principal = parseFloat(document.getElementById("principal").value);
-  let interestRate = parseFloat(document.getElementById("interestRate").value);
+  let principal = document.getElementById("principal").value;
+  let interestRate = document.getElementById("interestRate").value;
   let interestFrequency = document.getElementById("interestFrequency").value;
-  let periods = parseFloat(document.getElementById("periods").value);
+  let periods = document.getElementById("periods").value;
   let periodType = document.getElementById("period-type").value;
 
-  // Call calculateCompoundInterest function
-  let compoundInterestResult = compoundInterest(
-    principal,
-    interestRate,
-    periods,
-    interestFrequency,
-    periodType
-  );
+  if (
+    principal === "" ||
+    interestRate === "" ||
+    interestFrequency === "" ||
+    periods === "" ||
+    periodType === ""
+  ) {
+    alert("Por favor, preencha todos os campos com números!");
+    return;
+  } else {
+    let compoundInterestResult = compoundInterest(
+      principal,
+      interestRate,
+      periods,
+      interestFrequency,
+      periodType
+    );
 
-  // Update result element
-  let resultElement = document.querySelector(".interest-result");
-  resultElement.textContent = `Após ${periods} ${periodType}, o montante será de R$ ${compoundInterestResult}. Seu lucro será de R$ ${(
-    compoundInterestResult - principal
-  ).toFixed(2)}.`;
+    let resultElement = document.querySelector(".interest-result");
+    resultElement.textContent = `Após ${periods} ${periodType}, o montante será de R$ ${compoundInterestResult}. Seu lucro será de R$ ${(
+      compoundInterestResult - principal
+    ).toFixed(2)}.`;
+  }
 }
 
 function calculateAnnuityPayment() {
-  // Retrieve input values
-  let annuityPrincipal = parseFloat(
-    document.getElementById("annuityPrincipal").value
-  );
-  let annuityInterestRate = parseFloat(
-    document.getElementById("annuityInterestRate").value
-  );
-  let annuityPeriods = parseFloat(
-    document.getElementById("annuityPeriods").value
-  );
+  let annuityPrincipal = document.getElementById("annuityPrincipal").value;
+  let annuityInterestRate = document.getElementById(
+    "annuityInterestRate"
+  ).value;
+  let annuityPeriods = document.getElementById("annuityPeriods").value;
 
-  // Call calculateAnnuityPayment function
-  let annuityPaymentResult = annuityPayment(
-    annuityPrincipal,
-    annuityInterestRate,
-    annuityPeriods,
-  );
+  if (
+    annuityPayment === "" ||
+    annuityInterestRate === "" ||
+    annuityPeriods === ""
+  ) {
+    alert("Por favor, preencha todos os campos com números!");
+    return;
+  } else {
+    let annuityPaymentResult = annuityPayment(
+      annuityPrincipal,
+      annuityInterestRate,
+      annuityPeriods
+    );
 
-  // Update result element
-  let resultElement = document.querySelector(".annuity-result");
-  resultElement.textContent = `O pagamento da anuidade será de R$ ${annuityPaymentResult} por ${annuityPeriods} anos`;
+    let resultElement = document.querySelector(".annuity-result");
+    resultElement.textContent = `O pagamento da anuidade será de R$ ${annuityPaymentResult} por ${annuityPeriods} anos`;
+  }
 }
 
 function calculateAmortizationSchedule() {
   // Retrieve input values
-  let amortizationPrincipal = parseFloat(
-    document.getElementById("amortizationPrincipal").value
-  );
-  let amortizationInterestRate = parseFloat(
-    document.getElementById("amortizationInterestRate").value
-  );
-  let amortizationPeriods = parseFloat(
-    document.getElementById("amortizationPeriods").value
-  );
+  let amortizationPrincipal = document.getElementById(
+    "amortizationPrincipal"
+  ).value;
+  let amortizationInterestRate = document.getElementById(
+    "amortizationInterestRate"
+  ).value;
+  let amortizationPeriods = document.getElementById(
+    "amortizationPeriods"
+  ).value;
 
-  // Call amortizationSchedule function
-  let schedule = amortizationSchedule(
-    amortizationPrincipal,
-    amortizationInterestRate,
-    amortizationPeriods
-  );
-  var principalData = schedule.map((entry) => entry.principalPayment);
-  var interestData = schedule.map((entry) => entry.interestPaid);
-  var periodsData = schedule.map((entry) => entry.period);
-  var remainingData = schedule.map((entry) => entry.remainingBalance);
-  // Scroll the page to the bottom after a delay of 0.5 seconds
-  setTimeout(() => {
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: "smooth",
-    });
-  }, 500);
+  if (
+    amortizationPrincipal === "" ||
+    amortizationInterestRate === "" ||
+    amortizationPeriods === ""
+  ) {
+    alert("Por favor, preencha todos os campos com números!");
+    return;
+  } else {
+    let schedule = amortizationSchedule(
+      amortizationPrincipal,
+      amortizationInterestRate,
+      amortizationPeriods
+    );
+    console.log(amortizationInterestRate);
+    var principalData = schedule.map((entry) => entry.principalPayment);
+    var interestData = schedule.map((entry) => entry.interestPaid);
+    var periodsData = schedule.map((entry) => entry.period);
+    var remainingData = schedule.map((entry) => entry.remainingBalance);
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth",
+      });
+    }, 500);
 
-  renderChart(principalData, interestData, periodsData, remainingData);
+    renderChart(principalData, interestData, periodsData, remainingData);
+  }
 }
 
 calculateCompoundInterestBtn.addEventListener(
@@ -162,22 +178,29 @@ function renderChart(principalData, interestData, periodsData, remainingData) {
 
 // Open and close the "Como funciona?" dialogs
 const interestDialog = document.getElementById("how-it-works-interest-dialog");
-const interestParagraph = document.getElementById("how-it-works-interest-paragraph");
+const interestParagraph = document.getElementById(
+  "how-it-works-interest-paragraph"
+);
 interestParagraph.innerText = compoundInterestExplaination;
 const interestBtn = document.getElementById("how-it-works-interest-btn");
 
 const annuityDialog = document.getElementById("how-it-works-annuity-dialog");
-const annuityParagraph = document.getElementById("how-it-works-annuity-paragraph");
+const annuityParagraph = document.getElementById(
+  "how-it-works-annuity-paragraph"
+);
 annuityParagraph.innerText = annuityExplaination;
 const annuityBtn = document.getElementById("how-it-works-annuity-btn");
 
-const amortizationDialog = document.getElementById( "how-it-works-amortization-dialog");
-const amortizationParagraph = document.getElementById("how-it-works-amortization-paragraph");
+const amortizationDialog = document.getElementById(
+  "how-it-works-amortization-dialog"
+);
+const amortizationParagraph = document.getElementById(
+  "how-it-works-amortization-paragraph"
+);
 amortizationParagraph.innerText = amortizationScheduleExplaination;
 const amortizationBtn = document.getElementById(
   "how-it-works-amortization-btn"
 );
-
 
 interestBtn.addEventListener("click", () => interestDialog.showModal());
 annuityBtn.addEventListener("click", () => annuityDialog.showModal());
@@ -193,24 +216,24 @@ amortizationDialog.addEventListener("close", () =>
   amortizationDialog.querySelector("form").reset()
 );
 
-const dialogButtons = document.querySelectorAll('.btn-info');
-const closeButtons = document.querySelectorAll('.dialog-close');
-const overlay = document.createElement('div');
-overlay.className = 'overlay';
+const dialogButtons = document.querySelectorAll(".btn-info");
+const closeButtons = document.querySelectorAll(".dialog-close");
+const overlay = document.createElement("div");
+overlay.className = "overlay";
 
-dialogButtons.forEach(button => {
-  const dialogId = button.getAttribute('id').replace('how-it-works-', '');
+dialogButtons.forEach((button) => {
+  const dialogId = button.getAttribute("id").replace("how-it-works-", "");
   const dialog = document.getElementById(dialogId);
 
-  button.addEventListener('click', () => {
+  button.addEventListener("click", () => {
     document.body.appendChild(overlay);
     dialog.showModal();
   });
 });
 
-closeButtons.forEach(button => {
+closeButtons.forEach((button) => {
   const dialog = button.parentElement;
-  button.addEventListener('click', () => {
+  button.addEventListener("click", () => {
     dialog.close();
     document.body.removeChild(overlay);
   });
