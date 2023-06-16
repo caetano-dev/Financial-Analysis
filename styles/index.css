@@ -57,7 +57,6 @@ h2 {
   background-color: #0056b3;
 }
 
-/* Dialog Container */
 .dialog-container {
   display: flex;
   justify-content: center;
@@ -65,7 +64,6 @@ h2 {
   height: 100vh;
 }
 
-/* Dialog Styles */
 .dialog {
   max-width: 70rem;
   padding: 20px;
@@ -74,19 +72,16 @@ h2 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Dialog Title */
 .dialog-title {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-/* Dialog Content */
 .dialog-content {
   margin-bottom: 20px;
 }
 
-/* Dialog Close Button */
 .dialog-close {
   display: block;
   margin-left: auto;
@@ -94,12 +89,10 @@ h2 {
   cursor: pointer;
 }
 
-/* Dialog Close Button Hover */
 .dialog-close:hover {
   color: #333;
 }
 
-/* Overlay */
 .overlay {
   position: fixed;
   top: 0;

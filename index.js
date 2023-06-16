@@ -73,7 +73,6 @@ function calculateAnnuityPayment() {
 }
 
 function calculateAmortizationSchedule() {
-  // Retrieve input values
   let amortizationPrincipal = document.getElementById(
     "amortizationPrincipal"
   ).value;
