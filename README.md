@@ -5,17 +5,17 @@ Arquivo index.js:
 O arquivo `index.js` contém o código JavaScript responsável pela interação com a página web e pela utilização das funções financeiras fornecidas pelo módulo `utils.js`. 
 
 1. Importação das funções do módulo `utils.js`:
-   - `compoundInterest`, `annuityPayment`, `amortizationSchedule`, `amortizationScheduleExplaination`, `compoundInterestExplaination` e `annuityExplaination` são importadas do arquivo `utils.js`.
+   - `jurosCompostos`, `pagamentoDeAnuidade`, `periodoDeAmortizacao`, `periodoDeAmortizacaoExplaination`, `jurosCompostosExplaination` e `annuityExplaination` são importadas do arquivo `utils.js`.
 
 2. Seleção dos elementos HTML:
    - Os elementos HTML necessários para a interação com o usuário são selecionados utilizando o método `getElementById`.
 
 3. Definição das funções de cálculo:
-   - `calculateCompoundInterest()`: Essa função é chamada quando o botão "calculate-compound-interest-btn" é clicado. Ela recupera os valores dos campos de entrada, verifica se estão preenchidos corretamente e chama a função `compoundInterest` do módulo `utils.js` para calcular o montante acumulado de um investimento com juros compostos. O resultado é exibido na página.
+   - `calcularJurosCompostos()`: Essa função é chamada quando o botão "calculate-compound-interest-btn" é clicado. Ela recupera os valores dos campos de entrada, verifica se estão preenchidos corretamente e chama a função `jurosCompostos` do módulo `utils.js` para calcular o montante acumulado de um investimento com juros compostos. O resultado é exibido na página.
    
-   - `calculateAnnuityPayment()`: Essa função é chamada quando o botão "calculate-annuity-payment-btn" é clicado. Ela recupera os valores dos campos de entrada, verifica se estão preenchidos corretamente e chama a função `annuityPayment` do módulo `utils.js` para calcular o valor do pagamento da anuidade. O resultado é exibido na página.
+   - `calcularPagamentoDeAnuidade()`: Essa função é chamada quando o botão "calculate-annuity-payment-btn" é clicado. Ela recupera os valores dos campos de entrada, verifica se estão preenchidos corretamente e chama a função `pagamentoDeAnuidade` do módulo `utils.js` para calcular o valor do pagamento da anuidade. O resultado é exibido na página.
    
-   - `calculateAmortizationSchedule()`: Essa função é chamada quando o botão "calculate-amortization-btn" é clicado. Ela recupera os valores dos campos de entrada, verifica se estão preenchidos corretamente e chama a função `amortizationSchedule` do módulo `utils.js` para calcular a tabela de amortização de um empréstimo. Os dados da tabela são usados para gerar um gráfico que é exibido na página.
+   - `calcularPeriodoDeAmortizacao()`: Essa função é chamada quando o botão "calculate-amortization-btn" é clicado. Ela recupera os valores dos campos de entrada, verifica se estão preenchidos corretamente e chama a função `periodoDeAmortizacao` do módulo `utils.js` para calcular a tabela de amortização de um empréstimo. Os dados da tabela são usados para gerar um gráfico que é exibido na página.
 
 4. Função `renderChart(principalData, interestData, periodsData, remainingData)`:
    - Essa função recebe os dados da tabela de amortização (pagamento principal, pagamento de juros, períodos e saldo restante) e renderiza um gráfico de linha utilizando a biblioteca Chart.js. O gráfico exibe as informações de pagamento principal, pagamento de juros e saldo restante ao longo dos períodos.
@@ -24,16 +24,16 @@ O arquivo `index.js` contém o código JavaScript responsável pela interação 
    - Os botões de cálculo têm event listeners que chamam as funções de cálculo correspondentes quando são clicados.
 
 6. Funções para exibição das explicações:
-   - As explicações sobre o funcionamento das funções `compoundInterest`, `annuityPayment` e `amortizationSchedule` são exibidas em diálogos modais quando os botões "Como funciona?" são clicados. Essas funções definem event listeners para os botões e os diálogos modais, garantindo que os diálogos sejam abertos e fechados corretamente.
+   - As explicações sobre o funcionamento das funções `jurosCompostos`, `pagamentoDeAnuidade` e `periodoDeAmortizacao` são exibidas em diálogos modais quando os botões "Como funciona?" são clicados. Essas funções definem event listeners para os botões e os diálogos modais, garantindo que os diálogos sejam abertos e fechados corretamente.
 
 7. Funções para abertura e fechamento dos diálogos modais:
    - Essas funções são responsáveis por abrir e fechar os diálogos modais quando os botões correspondentes são clicados. Além disso, é adicionado um overlay à página para escurecer o fundo da tela.
 
 Arquivo utils.js:
 
-O código fornecido é um módulo JavaScript que exporta três funções relacionadas a cálculos financeiros: `compoundInterest`, `annuityPayment` e `amortizationSchedule`.
+O código fornecido é um módulo JavaScript que exporta três funções relacionadas a cálculos financeiros: `jurosCompostos`, `pagamentoDeAnuidade` e `periodoDeAmortizacao`.
 
-1. `compoundInterest(principal, interestRate, periods, interestFrequency, periodType)`: Esta função calcula o montante acumulado de um investimento com juros compostos. Ela recebe os seguintes parâmetros:
+1. `jurosCompostos(principal, interestRate, periods, interestFrequency, periodType)`: Esta função calcula o montante acumulado de um investimento com juros compostos. Ela recebe os seguintes parâmetros:
    - `principal`: O valor inicial do investimento.
    - `interestRate`: A taxa de juros anual.
    - `periods`: O número de períodos do investimento.
@@ -44,14 +44,14 @@ O código fornecido é um módulo JavaScript que exporta três funções relacio
 
    A variável `rateAndPeriods` é inicializada como 1 e, em seguida, é iterada `n * periods` vezes em um loop. A cada iteração, `rateAndPeriods` é multiplicado por `1 + rate / n`, onde `rate` é a taxa de juros decimal. Por fim, `amount` é multiplicado por `rateAndPeriods` para obter o montante acumulado e retornado como um valor com duas casas decimais.
 
-2. `annuityPayment(principal, interestRate, periods)`: Esta função calcula o valor do pagamento da anuidade com base no principal, taxa de juros e número de períodos. Ela recebe os seguintes parâmetros:
+2. `pagamentoDeAnuidade(principal, interestRate, periods)`: Esta função calcula o valor do pagamento da anuidade com base no principal, taxa de juros e número de períodos. Ela recebe os seguintes parâmetros:
    - `principal`: O valor principal da anuidade.
    - `interestRate`: A taxa de juros anual.
    - `periods`: O número de períodos da anuidade.
    
    A função converte a taxa de juros para uma taxa decimal e, em seguida, calcula o valor presente da anuidade usando a fórmula financeira apropriada. O valor presente é retornado como um valor com duas casas decimais.
 
-3. `amortizationSchedule(principal, interestRate, numYears)`: Esta função calcula uma tabela de amortização para um empréstimo com base no principal, taxa de juros e número de anos. Ela recebe os seguintes parâmetros:
+3. `periodoDeAmortizacao(principal, interestRate, numYears)`: Esta função calcula uma tabela de amortização para um empréstimo com base no principal, taxa de juros e número de anos. Ela recebe os seguintes parâmetros:
    - `principal`: O valor principal do empréstimo.
    - `interestRate`: A taxa de juros anual.
    - `numYears`: O número de anos do empréstimo.

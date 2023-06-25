@@ -1,4 +1,4 @@
-export function compoundInterest(
+export function jurosCompostos(
   principal,
   interestRate,
   periods,
@@ -24,7 +24,7 @@ export function compoundInterest(
   return amount.toFixed(2);
 }
 
-export function annuityPayment(
+export function pagamentoDeAnuidade(
   principal,
   interestRate,
   periods,
@@ -36,7 +36,7 @@ export function annuityPayment(
     return presentValue.toFixed(2);
   }
 
-export function amortizationSchedule(principal, interestRate, numYears) {
+export function periodoDeAmortizacao(principal, interestRate, numYears) {
   const schedule = [];
   const monthlyInterestRate = interestRate / 12 / 100;
   const numPayments = numYears * 12;
@@ -69,7 +69,7 @@ export function amortizationSchedule(principal, interestRate, numYears) {
 
   return schedule;
 }
-export const compoundInterestExplaination = `Os juros compostos são um método de cálculo de juros em que os ganhos gerados a cada período são reinvestidos, aumentando o valor principal para os períodos subsequentes. Diferentemente dos juros simples, onde os ganhos são calculados apenas com base no valor principal inicial, os juros compostos levam em consideração tanto o valor principal quanto os juros acumulados anteriormente.
+export const jurosCompostosExplaination = `Os juros compostos são um método de cálculo de juros em que os ganhos gerados a cada período são reinvestidos, aumentando o valor principal para os períodos subsequentes. Diferentemente dos juros simples, onde os ganhos são calculados apenas com base no valor principal inicial, os juros compostos levam em consideração tanto o valor principal quanto os juros acumulados anteriormente.
 
 A fórmula geral para o cálculo de juros compostos é:
 
@@ -127,7 +127,7 @@ Portanto, o valor presente dessa anuidade, considerando os pagamentos de R$ 1.00
 
 Essa é uma forma de avaliar o valor atual de uma série de pagamentos futuros, permitindo que você compare diferentes opções de investimento, empréstimos ou outros tipos de fluxos de caixa ao longo do tempo.`
 
-export const amortizationScheduleExplaination = `Uma tabela de amortização é uma ferramenta utilizada para acompanhar o pagamento de um empréstimo ao longo do tempo, fornecendo informações detalhadas sobre cada pagamento periódico. Ela mostra a evolução do saldo devedor, o valor dos juros pagos e a quantia amortizada em cada período.
+export const periodoDeAmortizacaoExplaination = `Uma tabela de amortização é uma ferramenta utilizada para acompanhar o pagamento de um empréstimo ao longo do tempo, fornecendo informações detalhadas sobre cada pagamento periódico. Ela mostra a evolução do saldo devedor, o valor dos juros pagos e a quantia amortizada em cada período.
 
 A tabela de amortização é calculada com base nas informações do empréstimo, incluindo o valor do empréstimo, a taxa de juros, o prazo de pagamento e o método de amortização utilizado. O método mais comum é o sistema de amortização constante (SAC), mas existem outros, como o sistema Price.
 

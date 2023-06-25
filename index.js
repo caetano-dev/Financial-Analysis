@@ -1,20 +1,20 @@
 import {
-  compoundInterest,
-  annuityPayment,
-  amortizationSchedule, amortizationScheduleExplaination, compoundInterestExplaination, annuityExplaination
+  jurosCompostos,
+  pagamentoDeAnuidade,
+  periodoDeAmortizacao, periodoDeAmortizacaoExplaination, jurosCompostosExplaination, annuityExplaination
 } from "./utils.js";
 
-const calculateCompoundInterestBtn = document.getElementById(
+const calcularJurosCompostosBtn = document.getElementById(
   "calculate-compound-interest-btn"
 );
-const calculateAnnuityPaymentBtn = document.getElementById(
+const calcularPagamentoDeAnuidadeBtn = document.getElementById(
   "calculate-annuity-payment-btn"
 );
-const calculateAmortizationScheduleBtn = document.getElementById(
+const calcularPeriodoDeAmortizacaoBtn = document.getElementById(
   "calculate-amortization-btn"
 );
 
-function calculateCompoundInterest() {
+function calcularJurosCompostos() {
   let principal = document.getElementById("principal").value;
   let interestRate = document.getElementById("interestRate").value;
   let interestFrequency = document.getElementById("interestFrequency").value;
@@ -31,7 +31,7 @@ function calculateCompoundInterest() {
     alert("Por favor, preencha todos os campos com números!");
     return;
   } else {
-    let compoundInterestResult = compoundInterest(
+    let jurosCompostosResult = jurosCompostos(
       principal,
       interestRate,
       periods,
@@ -40,13 +40,13 @@ function calculateCompoundInterest() {
     );
 
     let resultElement = document.querySelector(".interest-result");
-    resultElement.textContent = `Após ${periods} ${periodType}, o montante será de R$ ${compoundInterestResult}. Seu lucro será de R$ ${(
-      compoundInterestResult - principal
+    resultElement.textContent = `Após ${periods} ${periodType}, o montante será de R$ ${jurosCompostosResult}. Seu lucro será de R$ ${(
+      jurosCompostosResult - principal
     ).toFixed(2)}.`;
   }
 }
 
-function calculateAnnuityPayment() {
+function calcularPagamentoDeAnuidade() {
   let annuityPrincipal = document.getElementById("annuityPrincipal").value;
   let annuityInterestRate = document.getElementById(
     "annuityInterestRate"
@@ -54,25 +54,25 @@ function calculateAnnuityPayment() {
   let annuityPeriods = document.getElementById("annuityPeriods").value;
 
   if (
-    annuityPayment === "" ||
+    pagamentoDeAnuidade === "" ||
     annuityInterestRate === "" ||
     annuityPeriods === ""
   ) {
     alert("Por favor, preencha todos os campos com números!");
     return;
   } else {
-    let annuityPaymentResult = annuityPayment(
+    let pagamentoDeAnuidadeResult = pagamentoDeAnuidade(
       annuityPrincipal,
       annuityInterestRate,
       annuityPeriods
     );
 
     let resultElement = document.querySelector(".annuity-result");
-    resultElement.textContent = `O pagamento da anuidade será de R$ ${annuityPaymentResult} por ${annuityPeriods} anos`;
+    resultElement.textContent = `O pagamento da anuidade será de R$ ${pagamentoDeAnuidadeResult} por ${annuityPeriods} anos`;
   }
 }
 
-function calculateAmortizationSchedule() {
+function calcularPeriodoDeAmortizacao() {
   let amortizationPrincipal = document.getElementById(
     "amortizationPrincipal"
   ).value;
@@ -91,7 +91,7 @@ function calculateAmortizationSchedule() {
     alert("Por favor, preencha todos os campos com números!");
     return;
   } else {
-    let schedule = amortizationSchedule(
+    let schedule = periodoDeAmortizacao(
       amortizationPrincipal,
       amortizationInterestRate,
       amortizationPeriods
@@ -112,14 +112,14 @@ function calculateAmortizationSchedule() {
   }
 }
 
-calculateCompoundInterestBtn.addEventListener(
+calcularJurosCompostosBtn.addEventListener(
   "click",
-  calculateCompoundInterest
+  calcularJurosCompostos
 );
-calculateAnnuityPaymentBtn.addEventListener("click", calculateAnnuityPayment);
-calculateAmortizationScheduleBtn.addEventListener(
+calcularPagamentoDeAnuidadeBtn.addEventListener("click", calcularPagamentoDeAnuidade);
+calcularPeriodoDeAmortizacaoBtn.addEventListener(
   "click",
-  calculateAmortizationSchedule
+  calcularPeriodoDeAmortizacao
 );
 
 function renderChart(principalData, interestData, periodsData, remainingData) {
@@ -180,7 +180,7 @@ const interestDialog = document.getElementById("how-it-works-interest-dialog");
 const interestParagraph = document.getElementById(
   "how-it-works-interest-paragraph"
 );
-interestParagraph.innerText = compoundInterestExplaination;
+interestParagraph.innerText = jurosCompostosExplaination;
 const interestBtn = document.getElementById("how-it-works-interest-btn");
 
 const annuityDialog = document.getElementById("how-it-works-annuity-dialog");
@@ -196,7 +196,7 @@ const amortizationDialog = document.getElementById(
 const amortizationParagraph = document.getElementById(
   "how-it-works-amortization-paragraph"
 );
-amortizationParagraph.innerText = amortizationScheduleExplaination;
+amortizationParagraph.innerText = periodoDeAmortizacaoExplaination;
 const amortizationBtn = document.getElementById(
   "how-it-works-amortization-btn"
 );
