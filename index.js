@@ -1,7 +1,10 @@
 import {
   jurosCompostos,
   pagamentoDeAnuidade,
-  periodoDeAmortizacao, periodoDeAmortizacaoExplaination, jurosCompostosExplaination, annuityExplaination
+  periodoDeAmortizacao,
+  periodoDeAmortizacaoExplaination,
+  jurosCompostosExplaination,
+  annuityExplaination,
 } from "./utils.js";
 
 const calcularJurosCompostosBtn = document.getElementById(
@@ -101,22 +104,40 @@ function calcularPeriodoDeAmortizacao() {
     var interestData = schedule.map((entry) => entry.interestPaid);
     var periodsData = schedule.map((entry) => entry.period);
     var remainingData = schedule.map((entry) => entry.remainingBalance);
-    setTimeout(() => {
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: "smooth",
-      });
-    }, 500);
+    const table = document.getElementById("schedule-table");
+    const tableHeader = document.createElement("thead");
+    const headerRow = document.createElement("tr");
+    headerRow.innerHTML = `
+    <th>Período</th>
+    <th>Saldo Remanescente</th>
+    <th>Juros Pagos</th>
+    <th>Pagamento do Principal</th>
+    `;
+    tableHeader.appendChild(headerRow);
+    table.appendChild(tableHeader);
 
+    // Create table body
+    const tableBody = document.createElement("tbody");
+    schedule.forEach((entry) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${entry.period}°</td>
+        <td>R$${entry.remainingBalance}</td>
+        <td>R$${entry.interestPaid}</td>
+        <td>R$${entry.principalPayment}</td>
+      `;
+      tableBody.appendChild(row);
+    });
+    table.appendChild(tableBody);
     renderChart(principalData, interestData, periodsData, remainingData);
   }
 }
 
-calcularJurosCompostosBtn.addEventListener(
+calcularJurosCompostosBtn.addEventListener("click", calcularJurosCompostos);
+calcularPagamentoDeAnuidadeBtn.addEventListener(
   "click",
-  calcularJurosCompostos
+  calcularPagamentoDeAnuidade
 );
-calcularPagamentoDeAnuidadeBtn.addEventListener("click", calcularPagamentoDeAnuidade);
 calcularPeriodoDeAmortizacaoBtn.addEventListener(
   "click",
   calcularPeriodoDeAmortizacao

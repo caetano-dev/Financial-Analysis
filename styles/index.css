@@ -1,18 +1,30 @@
+:root {
+  --blue: #001f3f;
+  --gray: #CCCCCC;
+
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 1rem;
-  background-color: #f7f7f7;
+  background-color: #b9b9b9;
 }
 
 h1 {
-  color: #333;
+  color: var(--blue);
   margin-bottom: 2rem;
 }
 
 h2 {
-  color: #555;
-  margin-top: 3rem;
+  color: var(--blue);
+}
+
+.interest-container, .annuity-container , .amortization-container{
+  margin: 2rem 0rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: var(--gray)
 }
 
 .input-container {
@@ -44,7 +56,7 @@ h2 {
 .btn {
   display: inline-block;
   padding: .8em .8em;
-  background-color: #007bff;
+  background-color: var(--blue);
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -67,7 +79,7 @@ h2 {
 .dialog {
   max-width: 70rem;
   padding: 20px;
-  background-color: #fff;
+  background-color: var(--gray);
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -103,14 +115,45 @@ h2 {
 }
 
 .results {
-  margin-top: 2em;
+  font-size: 1.2rem;
+  color: var(--blue);
+  margin: 2rem 0rem;
   padding: 2em;
   height: auto;
-  background-color: #fff;
+  background-color: #dad9d9;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+#schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.375);
+}
+
+#schedule-table thead th {
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: left;
+}
+
+#schedule-table tbody td {
+  padding: 10px;
+}
+
+#schedule-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#schedule-table tbody tr:hover {
+  background-color: #eaf6ff;
+}
+
+#schedule-table tbody td:first-child {
+  font-weight: bold;
+}
+
 
 @media screen and (max-width: 600px) {
   .container {

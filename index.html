@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="styles/index.css" />
     <title>Análise Financeira</title>
 </head>
-<h1>Calculadora financeira</h1>
+<h1>Gerencie suas finanças</h1>
 <section class="interest-container">
-    <h2>Calcular juros compostos</h2>
+    <h2>Juros compostos</h2>
     <div class="input-container">
       <div class="input-group">
         <label for="principal" class="input-label">Valor inicial:</label>
@@ -48,7 +48,7 @@
   </section>
 
   <section class="annuity-container">
-    <h2>Calcular valor presente da anuidade</h2>
+    <h2>Valor presente da anuidade</h2>
     <div class="input-container">
       <div class="input-group">
         <label for="annuityPrincipal" class="input-label">Valor inicial:</label>
@@ -96,6 +96,7 @@
     <button class="btn" id="calculate-amortization-btn">Calcular</button>
     <div class="results">
       <canvas id="chart"></canvas>
+      <table id="schedule-table"></table>
     </div>
     <button class="btn btn-info" id="how-it-works-amortization-btn">Como funciona?</button>
     <dialog id="how-it-works-amortization-dialog" class="dialog">
