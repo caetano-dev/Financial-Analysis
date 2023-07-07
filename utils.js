@@ -24,17 +24,18 @@ export function jurosCompostos(
   return amount.toFixed(2);
 }
 
-export function pagamentoDeAnuidade(
-  principal,
-  interestRate,
-  periods,
-) {
-    interestRate = interestRate / 100;
-    const presentValue =
-      principal * ((1 - Math.pow(1 + interestRate, -periods)) / interestRate);
-  
-    return presentValue.toFixed(2);
+export function pagamentoDeAnuidade(principal, interestRate, periods) { //valor presenta da anuidade
+  interestRate = interestRate / 100; // Convert interest rate to decimal
+  let presentValue = 0;
+
+  for (let i = 1; i <= periods; i++) {
+    let discountFactor = 1 / Math.pow(1 + interestRate, i);
+    presentValue += principal * discountFactor;
   }
+
+  return presentValue.toFixed(2);
+}
+
 
 export function periodoDeAmortizacao(principal, interestRate, numYears) {
   const schedule = [];
