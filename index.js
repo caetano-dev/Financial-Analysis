@@ -71,7 +71,7 @@ function calcularPagamentoDeAnuidade() {
     );
 
     let resultElement = document.querySelector(".annuity-result");
-    resultElement.textContent = `O pagamento da anuidade será de R$ ${pagamentoDeAnuidadeResult} por ${annuityPeriods} anos`;
+    resultElement.textContent = `O valor presente da anuidade, considerando os pagamentos de R$${annuityPrincipal} por ano durante ${annuityPeriods} anos com uma taxa de juros de ${annuityInterestRate}%, é de R$${pagamentoDeAnuidadeResult}.`
   }
 }
 
@@ -109,9 +109,9 @@ function calcularPeriodoDeAmortizacao() {
     const headerRow = document.createElement("tr");
     headerRow.innerHTML = `
     <th>Período</th>
-    <th>Saldo Remanescente</th>
-    <th>Juros Pagos</th>
-    <th>Pagamento do Principal</th>
+    <th>Saldo Devedor</th>
+    <th>Juros</th>
+    <th>Amortização</th>
     `;
     tableHeader.appendChild(headerRow);
     table.appendChild(tableHeader);
@@ -152,21 +152,21 @@ function renderChart(principalData, interestData, periodsData, remainingData) {
       labels: periodsData,
       datasets: [
         {
-          label: "Pagamento Principal",
+          label: "Amortização",
           data: principalData,
           backgroundColor: "rgba(54, 162, 235, 0.5)",
           borderColor: "rgba(54, 162, 235, 1)",
           borderWidth: 1,
         },
         {
-          label: "Pagamento de Juros",
+          label: "Juros",
           data: interestData,
           backgroundColor: "rgba(255, 99, 132, 0.5)",
           borderColor: "rgba(255, 99, 132, 1)",
           borderWidth: 1,
         },
         {
-          label: "Saldo Restante",
+          label: "Saldo Devedor",
           data: remainingData,
           backgroundColor: "rgba(0, 204, 0, 0.5)",
           borderColor: "rgba(0, 204, 0, 1)",

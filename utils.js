@@ -74,32 +74,29 @@ export const jurosCompostosExplaination = `Os juros compostos são um método de
 
 A fórmula geral para o cálculo de juros compostos é:
 
-A = P(1 + r/n)^(nt)
+M = P x (1 + i)^n
 
 Onde:
 
-    A é o montante total acumulado após o tempo t;
-    P é o principal (ou valor inicial) investido;
-    r é a taxa de juros anual expressa como decimal (por exemplo, 0,05 para 5%);
-    n é o número de vezes que os juros são compostos por ano;
-    t é o tempo em anos.
+  M é o montante acumulado após n períodos de tempo.
+  P é o principal, ou seja, o valor inicial do investimento.
+  i é a taxa de juros aplicada ao investimento, expressa como uma porcentagem decimal.
+  n é o número de períodos em que o investimento será realizado.
 
-Essa fórmula considera a capitalização dos juros n vezes por ano. Se os juros forem compostos anualmente, n será igual a 1. Se forem compostos semestralmente, n será igual a 2. Se forem compostos trimestralmente, n será igual a 4, e assim por diante.
+  Vamos supor que você deseja investir R$1.000,00 com uma taxa de juros de 5% ao ano, durante 3 anos, utilizando juros compostos. Nesse caso, os valores correspondem da seguinte forma:
 
-Para entender melhor, vamos a um exemplo:
+    P = R$1.000,00 (principal)
+    i = 5% = 0,05 (taxa de juros em formato decimal)
+    n = 3 (número de anos)
 
-Suponha que você investiu R$ 5.000,00 em uma conta de investimento que oferece uma taxa de juros anual de 6%, com capitalização mensal, durante 3 anos.
+Agora, vamos aplicar a fórmula para calcular o montante acumulado (M):
 
-Usando a fórmula dos juros compostos, temos:
+M = P x (1 + i)^n
+M = R$1.000,00 x (1 + 0,05)^3
+M = R$1.000,00 x (1,05)^3
+M ≈ R$1.157,63
 
-A = 5000(1 + 0,06/12)^(12*3)
-A = 5000(1 + 0,005)^(36)
-A = 5000(1,005)^(36)
-A ≈ 5904,81
-
-Portanto, após 3 anos, o montante total acumulado será de aproximadamente R$ 5.904,81.
-
-Essa fórmula demonstra como os juros compostos podem aumentar significativamente o valor total ao longo do tempo, uma vez que os ganhos são reinvestidos e também geram seus próprios ganhos.`
+Portanto, o montante acumulado após 3 anos, considerando juros compostos a uma taxa de 5% ao ano, seria aproximadamente R$1.157,63.`
 
 export const annuityExplaination = `O valor presente de uma anuidade é um conceito financeiro usado para determinar o valor atual de uma série de pagamentos futuros que ocorrerão em intervalos regulares, como uma anuidade. É a quantia que seria necessária hoje para igualar o valor dos pagamentos futuros, levando em consideração o tempo e a taxa de juros aplicada.
 
@@ -124,27 +121,17 @@ VP = 1000 * [0.31942 / 0.08]
 VP = 1000 * 3.99271
 VP = 3992.71
 
-Portanto, o valor presente dessa anuidade, considerando os pagamentos de R$ 1.000 por ano durante 5 anos com uma taxa de juros de 8%, é de R$ 3.992,75.
+Portanto, o valor presente dessa anuidade, considerando os pagamentos de R$ 1.000 por ano durante 5 anos com uma taxa de juros de 8%, é de R$ 3.992,71.
 
 Essa é uma forma de avaliar o valor atual de uma série de pagamentos futuros, permitindo que você compare diferentes opções de investimento, empréstimos ou outros tipos de fluxos de caixa ao longo do tempo.`
 
 export const periodoDeAmortizacaoExplaination = `Uma tabela de amortização é uma ferramenta utilizada para acompanhar o pagamento de um empréstimo ao longo do tempo, fornecendo informações detalhadas sobre cada pagamento periódico. Ela mostra a evolução do saldo devedor, o valor dos juros pagos e a quantia amortizada em cada período.
 
-A tabela de amortização é calculada com base nas informações do empréstimo, incluindo o valor do empréstimo, a taxa de juros, o prazo de pagamento e o método de amortização utilizado. O método mais comum é o sistema de amortização constante (SAC), mas existem outros, como o sistema Price.
+A tabela de amortização é calculada com base nas informações do empréstimo, incluindo o valor do empréstimo, a taxa de juros, o prazo de pagamento e o método de amortização utilizado. 
 
-Vamos considerar o exemplo de um empréstimo de R$ 10.000, com uma taxa de juros anual de 10% e um prazo de pagamento de 5 anos (60 meses) utilizando o método SAC. Para calcular a tabela de amortização, precisamos seguir os seguintes passos:
+A amortização é, sobretudo, o pagamento de dívidas feito por empresas de forma parcelada, em um prazo pré-estabelecido. Ou seja, é o processo de dividir um empréstimo em uma série de pagamentos fixos por um determinado período. Você pagará os juros e o valor principal do empréstimo em montantes diferentes a cada mês, embora seu pagamento total permaneça igual.
 
-    Calcular a amortização mensal: A amortização é a parte do pagamento que reduz o saldo devedor. No caso do SAC, a amortização é constante em cada período. Nesse exemplo, o valor do empréstimo é dividido pelo número de meses, ou seja, R$ 10.000 / 60 = R$ 166,67.
+Ela é calculada com base no valor principal da dívida, ou seja, é o montante real que foi emprestado ou financiado. E as parcelas não se referem apenas à amortização, mas também aos encargos e juros embutidos. Por exemplo: se foi feito um financiamento de R$ 100 mil para a compra de uma casa, o valor principal da dívida será igual a esses R$ 100 mil.
 
-    Calcular os juros mensais: Os juros são calculados com base no saldo devedor remanescente em cada período. No primeiro mês, o saldo devedor é igual ao valor do empréstimo, então os juros seriam 10% de R$ 10.000, o que resulta em R$ 1.000.
-
-    Calcular o pagamento mensal: O pagamento mensal é a soma da amortização e dos juros. No primeiro mês, seria R$ 166,67 (amortização) + R$ 1.000 (juros) = R$ 1.166,67.
-
-    Calcular o novo saldo devedor: O saldo devedor remanescente é reduzido pela amortização a cada período. No primeiro mês, o saldo devedor seria R$ 10.000 - R$ 166,67 = R$ 9.833,33.
-
-Esses cálculos são repetidos para cada período até o final do prazo de pagamento. Cada mês, a amortização continua constante, mas os juros são recalculados com base no saldo devedor remanescente.
-
-Uma vez que todos esses cálculos são realizados para cada período, os valores são organizados em uma tabela. A tabela de amortização mostra o número do período, o pagamento mensal, a parte do pagamento correspondente aos juros, a parte do pagamento correspondente à amortização e o saldo devedor remanescente.
-
-Essa é uma visão geral de como funciona uma tabela de amortização e como ela é calculada. A tabela permite que o mutuário visualize o progresso do pagamento do empréstimo, acompanhe a redução do saldo devedor e entenda a composição dos pagamentos mensais entre juros e amortização."
+Diferentemente da depreciação, quando o fator considerado refere-se à eventual escassez de recursos, a amortização leva em conta o tempo em que a empresa passa em posse do investimento.
 `;
